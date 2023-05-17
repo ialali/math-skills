@@ -26,6 +26,7 @@ func calculateMedian(data []int) int {
 		return middle
 	}
 }
+
 // The function calculates the average of a given slice of integers.
 func calculateAverage(data []int) int {
 	sum := 0
@@ -34,21 +35,25 @@ func calculateAverage(data []int) int {
 	}
 	return sum / len(data)
 }
+
 // The function calculates the variance of a given set of integers.
 func calculateVariance(data []int) int {
 	average := calculateAverage(data)
-	sumOfSquares := 0
+	sumOfSquares := 0.0
 	for _, value := range data {
-		deviation := value - average
+		deviation := float64(value - average)
 		sumOfSquares += deviation * deviation
 	}
-	return sumOfSquares / len(data)
+	sumOfSquares /= float64(len(data))
+	return int(math.Round(sumOfSquares))
 }
+
 // The function calculates the standard deviation of a given set of integer data.
 func calculateStandardDeviation(data []int) int {
 	variance := calculateVariance(data)
 	return int(math.Round(math.Sqrt(float64(variance))))
 }
+
 // The function reads data from a file, calculates the median, average, variance, and standard
 // deviation of the data, and prints the results.
 func main() {
@@ -83,8 +88,8 @@ func main() {
 	average := calculateAverage(data)
 	variance := calculateVariance(data)
 	standardDeviation := calculateStandardDeviation(data)
-	fmt.Println("Median:", median)
 	fmt.Println("Average:", average)
+	fmt.Println("Median:", median)
 	fmt.Println("Variance:", variance)
 	fmt.Println("Standard Deviation:", standardDeviation)
 }
