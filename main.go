@@ -19,7 +19,8 @@ func calculateMedian(data []int) int {
 		// If the length is even, average the middle two elements
 		middle1 := data[length/2-1]
 		middle2 := data[length/2]
-		return (middle1 + middle2) / 2
+		median := float64(middle1+middle2) / 2.0
+		return int(math.Round(median))
 	} else {
 		// If the length is odd, return the middle element
 		middle := data[length/2]
@@ -29,11 +30,12 @@ func calculateMedian(data []int) int {
 
 // The function calculates the average of a given slice of integers.
 func calculateAverage(data []int) int {
-	sum := 0
+	sum := 0.0
 	for _, value := range data {
-		sum += value
+		sum += float64(value)
 	}
-	return sum / len(data)
+	average := sum / float64(len(data))
+	return int(math.Round(average))
 }
 
 // The function calculates the variance of a given set of integers.
